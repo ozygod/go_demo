@@ -47,7 +47,7 @@ import "fmt"
 func main() {
 	nums1 := []int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4}
 	//nums1 := []int{0, 0}
-	n := removeDuplicates2(nums1)
+	n := removeDuplicates3(nums1)
 	fmt.Println(n, nums1)
 }
 
@@ -92,4 +92,20 @@ func removeDuplicates2(nums []int) int {
 	}
 
 	return left + 1
+}
+
+func removeDuplicates3(nums []int) int {
+	if len(nums) <= 1 {
+		return len(nums)
+	}
+	left, right := 1, 1
+	for right < len(nums) {
+		if nums[left-1] != nums[right] {
+			nums[left] = nums[right]
+			left++
+		}
+		right++
+	}
+
+	return left
 }
