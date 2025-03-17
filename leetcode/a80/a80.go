@@ -48,22 +48,21 @@ nums 已按升序排列
 */
 
 func main() {
-	//nums := []int{0, 0, 1}
+	nums := []int{0, 0, 1}
 	//nums := []int{1, 1, 1, 2, 2, 3}
-	nums := []int{0, 0, 1, 1, 1, 1, 2, 3, 3}
-	n := removeDuplicates(nums)
+	//nums := []int{0, 0, 1, 1, 1, 1, 2, 3, 3}
+	n := removeDuplicates2(nums)
 	fmt.Println(n, nums)
 }
 
 // slow表示处理过的数组长度，fast表示已经检查过的数组长度
 // 只有当fast代表的元素与上一个符合条件数组的头元素（slow-2）不同时，slow才移动
-func removeDuplicates(nums []int) int {
+func removeDuplicates1(nums []int) int {
 	if len(nums) < 3 {
 		return len(nums)
 	}
 	slow, fast := 2, 2
 	for slow < len(nums) && fast < len(nums) {
-		fmt.Println(slow, fast, nums)
 		if nums[slow-2] != nums[fast] {
 			nums[slow] = nums[fast]
 			slow++
@@ -72,4 +71,15 @@ func removeDuplicates(nums []int) int {
 	}
 
 	return slow
+}
+
+func removeDuplicates2(nums []int) int {
+	n := 0
+	for _, num := range nums {
+		if n < 2 || num != nums[n-2] {
+			nums[n] = num
+			n++
+		}
+	}
+	return n
 }
