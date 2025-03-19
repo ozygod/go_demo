@@ -119,6 +119,7 @@ func countInRange(nums []int, target, lo, hi int) int {
 	return count
 }
 
+// Boyer-Moore 投票算法
 func majorityElement5(nums []int) int {
 	current, count := nums[0], 0
 	for _, num := range nums {
